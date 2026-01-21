@@ -1,0 +1,94 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --color-brand: 79 70 229;
+  --color-surface-light: 255 255 255;
+  --color-surface-dark: 17 24 39;
+  --color-text-primary-light: 17 24 39;
+  --color-text-primary-dark: 249 250 251;
+  --color-text-secondary-light: 107 114 128;
+  --color-text-secondary-dark: 156 163 175;
+  --color-border-light: 229 231 235;
+  --color-border-dark: 55 65 81;
+}
+
+/* Light theme */
+.light {
+  --color-surface: var(--color-surface-light);
+  --color-text-primary: var(--color-text-primary-light);
+  --color-text-secondary: var(--color-text-secondary-light);
+  --color-border: var(--color-border-light);
+}
+
+/* Dark theme */
+.dark {
+  --color-surface: var(--color-surface-dark);
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-secondary: var(--color-text-secondary-dark);
+  --color-border: var(--color-border-dark);
+}
+
+/* Custom classes usando as variáveis CSS */
+.card {
+  @apply bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark;
+}
+
+.text-text-primary {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
+.text-text-secondary {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
+.btn-primary {
+  @apply bg-brand-600 hover:bg-brand-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+}
+
+.btn-outline {
+  @apply border border-border-light dark:border-border-dark text-text-primary-light dark:text-text-primary-dark hover:bg-gray-50 dark:hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-500;
+}

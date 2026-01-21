@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  name      String
+  email     String      @unique
+  password  String
+  role      String      @default("user")
+  analytics Analytics[]
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Analytics {
+  id        Int      @id @default(autoincrement())
+  metric    String
+  value     Float
+  category  String   @default("other")
+  userId    Int      @map("user_id")
+  user      User     @relation(fields: [userId], references: [id])
+  metadata  Json?    @default("{}")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("analytics")
+}
