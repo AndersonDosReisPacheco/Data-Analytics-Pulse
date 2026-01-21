@@ -6,8 +6,8 @@ const useAuthStore = create((set, get) => ({
   token: null,
   loading: false,
   error: null,
-  registrationSuccess: false, // Novo estado para controle de sucesso no registro
-  registrationData: null, // Dados do registro bem-sucedido
+  registrationSuccess: false,
+  registrationData: null,
 
   initializeAuth: () => {
     const token = localStorage.getItem("token");
@@ -19,7 +19,7 @@ const useAuthStore = create((set, get) => ({
 
   fetchUser: async () => {
     try {
-      const res = await api.get("/auth/me");
+      const res = await api.get("/api/auth/me");
       set({ user: res.data.user || res.data });
     } catch (err) {
       console.error("Error fetching user:", err);
@@ -30,11 +30,11 @@ const useAuthStore = create((set, get) => ({
 
   register: async (userData) => {
     set({ loading: true, error: null, registrationSuccess: false });
+
     try {
-      const res = await api.post("/auth/register", userData);
+      const res = await api.post("/api/auth/register", userData);
       const { token, user } = res.data;
 
-      // NÃO salva o token no localStorage - usuário precisa fazer login separadamente
       set({
         loading: false,
         registrationSuccess: true,
@@ -61,13 +61,13 @@ const useAuthStore = create((set, get) => ({
 
   login: async (email, password) => {
     set({ loading: true, error: null, registrationSuccess: false });
+
     try {
-      const res = await api.post("/auth/login", { email, password });
+      const res = await api.post("/api/auth/login", { email, password });
       const { token, user } = res.data;
 
-      // Salva o token e faz login
       localStorage.setItem("token", token);
-      set({ token, user, loading: false, registrationSuccess: false });
+      set({ token, user, loading: false });
 
       return { success: true };
     } catch (err) {
@@ -87,7 +87,6 @@ const useAuthStore = create((set, get) => ({
     });
   },
 
-  // Função para limpar o estado de sucesso do registro
   clearRegistrationSuccess: () => {
     set({
       registrationSuccess: false,
@@ -97,7 +96,7 @@ const useAuthStore = create((set, get) => ({
 
   forgotPassword: async (email) => {
     try {
-      await api.post("/auth/forgot-password", { email });
+      await api.post("/api/auth/forgot-password", { email });
       return { success: true };
     } catch (err) {
       const message = err.response?.data?.message || "Request failed";
@@ -107,7 +106,7 @@ const useAuthStore = create((set, get) => ({
 
   resetPassword: async (token, newPassword) => {
     try {
-      await api.post("/auth/reset-password", { token, newPassword });
+      await api.post("/api/auth/reset-password", { token, newPassword });
       return { success: true };
     } catch (err) {
       const message = err.response?.data?.message || "Reset failed";
