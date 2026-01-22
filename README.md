@@ -1,3 +1,10 @@
+
+
+
+https://github.com/user-attachments/assets/6bbd581c-2fe9-41e6-8319-32b6cfd015ac
+
+
+
 # 📊 DataPulse Analytics
 
 🚀 **DataPulse Analytics** é uma plataforma web moderna de análise de dados, desenvolvida com **arquitetura full stack profissional**, autenticação segura, dashboard interativo e integração completa entre **Frontend (Vercel)**, **Backend (Render)** e **PostgreSQL (Prisma ORM)**.
@@ -169,4 +176,5 @@ Apaixonado por tecnologia, arquitetura limpa e projetos bem feitos.
 
 🔗 LinkedIn: (https://www.linkedin.com/in/anderson-pacheco-dev/)
 📂 GitHub: https://github.com/AndersonDosReisPacheco
+
 
