@@ -35,9 +35,6 @@ Backend (Node.js + Express)
 |
 PostgreSQL (Cloud)
 
-markdown
-Copiar código
-
 ---
 
 ## 🛠️ Tecnologias Utilizadas
@@ -176,5 +173,6 @@ Apaixonado por tecnologia, arquitetura limpa e projetos bem feitos.
 
 🔗 LinkedIn: (https://www.linkedin.com/in/anderson-pacheco-dev/)
 📂 GitHub: https://github.com/AndersonDosReisPacheco
+
 
 
